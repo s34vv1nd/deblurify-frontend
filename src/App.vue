@@ -33,6 +33,8 @@ export default {
     // axios.get("http://localhost:8080/api/v1/deblur").then(response => {
     //   console.log(response)
     // })
+    this.rawImg = localStorage.getItem("RAW_IMG")
+    this.deblurifiedImg = localStorage.getItem("DEBLURIFIED_IMG")
   },
 
   methods: {
@@ -42,10 +44,9 @@ export default {
 
       reader.onloadend = () => {
         this.rawImg = reader.result;
-        // console.log(this.rawImg);
+        localStorage.setItem("RAW_IMG", this.rawImg)
       }
       reader.readAsDataURL(file);
-      // console.log(file)
     },
 
     deblurify() {
@@ -53,9 +54,8 @@ export default {
       axios.post("http://localhost:8080/api/v1/deblur", {
         image: this.rawImg
       }).then((response) => {
-        // console.log(response)
-        this.deblurifiedImg = response.data.image
-        console.log(this.deblurifiedImg)
+        this.deblurifiedImg = `data:image/jpeg;base64,${response.data.image}`
+        localStorage.setItem("DEBLURIFIED_IMG", this.deblurifiedImg)
       })
     }
   },
