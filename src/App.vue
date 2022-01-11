@@ -16,25 +16,41 @@
   </label>
 
   <div class="img-container">
-    <img
-      class="upload-img imgBorder image-one"
-      id="upload-img"
-      :src="rawImg"
-      width="400"
-      height="600"
-      alt="your original image"
-    />
-    <button class="deblur-btn button-76" title="Deblurify" @click="deblurify()">
-      Deblurify
-    </button>
-    <img
-      class="deblur-img imgBorder upload-img image-two"
-      id="deblur-img"
-      :src="deblurifiedImg"
-      width="400"
-      height="600"
-      alt="your deblurified image"
-    />
+    <th class="image-col">
+      <img
+        class="upload-img imgBorder image-one"
+        id="upload-img"
+        :src="rawImg"
+        alt="your original image"
+      />
+    </th>
+
+    <th class="deblur-btn-col">
+      <button class="button-76" title="Deblurify" @click="deblurify()">
+        Deblurify
+      </button>
+    </th>
+
+    <th class="image-col">
+      <!-- <img
+        class="deblur-img imgBorder upload-img image-two image"
+        id="deblur-img"
+        :src="deblurifiedImg"
+        alt="your deblurified image"
+      /> -->
+  
+      <div class="container">
+        <img
+          class="deblur-img imgBorder upload-img image-two image"
+          id="deblur-img"
+          :src="deblurifiedImg"
+          alt="your deblurified image"
+        />
+        <div class="overlay">
+          <a class="text pointer" @click="download" :href="deblurifiedImg" :download="deblurifiedImg">Download</a>
+        </div>
+      </div>
+    </th>
   </div>
 </template>
 
@@ -105,6 +121,10 @@ export default {
           });
       }
     },
+
+    download() {
+      
+    }
   },
 };
 </script>
@@ -125,6 +145,10 @@ html {
   height: 1000px;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 h1 {
   color: white;
   margin-bottom: 54px;
@@ -134,28 +158,30 @@ h1 {
   margin-bottom: 100px;
 }
 
+.img-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .upload-img {
-  max-width: 40rem;
-  max-height: 40rem;
+  max-width: 90%;
+  max-height: auto;
   margin-bottom: 20px;
 }
-.deblur-btn {
-  margin: 5rem;
-  position: absolute;
-  top: 500px;
-  right: 788px;
+
+.deblur-btn-col {
+  margin-top: 10rem;
 }
 
 .image-one {
-  position: absolute;
-  top: 400px;
-  right: 1280px;
 }
 
 .image-two {
-  position: absolute;
-  top: 400px;
-  right: 200px;
+}
+
+.image-col {
+  width: 40%;
 }
 
 .imgBorder {
@@ -249,5 +275,43 @@ select::after {
   font-size: 24px;
   border-left: 1px solid #3c1c78;
   z-index: -1;
+}
+
+.container {
+  position: relative;
+}
+
+.image {
+  /* display: block; */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #008CBA;
+}
+
+.container:hover .overlay {
+  opacity: 1;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  text-decoration:none
 }
 </style>
