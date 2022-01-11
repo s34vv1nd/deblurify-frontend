@@ -40,7 +40,6 @@
 
 <script>
 import axios from "axios";
-require("@/assets/1.jpg");
 
 export default {
   name: "App",
@@ -48,8 +47,8 @@ export default {
 
   data() {
     return {
-      deblurifiedImg: require("@/assets/1.jpg"),
-      rawImg: null,
+      deblurifiedImg: require("@/assets/deblured-image.png"),
+      rawImg: require("@/assets/original-image.png"),
     };
   },
 
@@ -57,7 +56,7 @@ export default {
     // axios.get("http://localhost:8080/api/v1/deblur").then(response => {
     //   console.log(response)
     // })
-    this.rawImg = localStorage.getItem("RAW_IMG");
+    //this.rawImg = localStorage.getItem("RAW_IMG");
     //this.deblurifiedImg = localStorage.getItem("DEBLURIFIED_IMG");
   },
 
@@ -128,6 +127,7 @@ html {
 
 h1 {
   color: white;
+  margin-bottom: 54px;
 }
 
 .imgInput {
