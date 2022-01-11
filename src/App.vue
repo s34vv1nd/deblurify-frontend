@@ -1,5 +1,5 @@
 <template>
-  <h1>DEBLURIFY</h1>
+  <h1>WELCOME TO DEBLURIFY WEB APP!</h1>
 
   <label class="custom-select" for="styledSelect1"
     ><select id="styledSelect1" name="options">
