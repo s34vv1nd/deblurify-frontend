@@ -1,9 +1,13 @@
 # deblurify
 
 ## Project structure
-public  - contains index.html
-src     - App.vue, main.js - contains front-end code
-        - asset   - contains default images, icon 
+```
+public  _ index.html
+
+src     _ App.vue, main.js      : front-end code
+
+        |_ asset                : contains default images, icon 
+```
 
 ## Project setup
 ```
