@@ -183,7 +183,7 @@ h1 {
 }
 
 .imgBorder {
-  padding: 2% 2% 0;
+  padding: 2% 2% 2% 2%;
   background-color: white;
   box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
   -moz-box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
