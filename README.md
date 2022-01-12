@@ -1,5 +1,10 @@
 # deblurify
 
+## Project structure
+public  - contains index.html
+src     - App.vue, main.js - contains front-end code
+        - asset   - contains default images, icon 
+
 ## Project setup
 ```
 npm install
