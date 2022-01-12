@@ -18,7 +18,7 @@
   <div class="img-container">
     <th class="image-col">
       <img
-        class="upload-img imgBorder image-one"
+        class="imgBorder image-one"
         id="upload-img"
         :src="rawImg"
         alt="your original image"
@@ -32,16 +32,9 @@
     </th>
 
     <th class="image-col">
-      <!-- <img
-        class="deblur-img imgBorder upload-img image-two image"
-        id="deblur-img"
-        :src="deblurifiedImg"
-        alt="your deblurified image"
-      /> -->
-  
       <div class="container">
         <img
-          class="deblur-img imgBorder upload-img image-two image"
+          class="imgBorder image-two"
           id="deblur-img"
           :src="deblurifiedImg"
           alt="your deblurified image"
@@ -94,37 +87,33 @@ export default {
 
       if (deblurType == 1) {
         axios
-          .post("http://localhost:8080/api/v1/deblur", {
+          .post("http://localhost:8080/api/v1/deblur_fast", {
             image: this.rawImg,
           })
           .then((response) => {
             this.deblurifiedImg = `data:image/jpeg;base64,${response.data.image}`;
-            localStorage.setItem("DEBLURIFIED_IMG", this.deblurifiedImg);
+            // localStorage.setItem("DEBLURIFIED_IMG", this.deblurifiedImg);
           });
       } else if (deblurType == 2) {
         axios
-          .post("http://localhost:8080/api/v1/deblur", {
+          .post("http://localhost:8080/api/v1/deblur_hd", {
             image: this.rawImg,
           })
           .then((response) => {
             this.deblurifiedImg = `data:image/jpeg;base64,${response.data.image}`;
-            localStorage.setItem("DEBLURIFIED_IMG", this.deblurifiedImg);
+            // localStorage.setItem("DEBLURIFIED_IMG", this.deblurifiedImg);
           });
       } else if (deblurType == 3) {
         axios
-          .post("http://localhost:8080/api/v1/deblur", {
+          .post("http://localhost:8080/api/v1/deblur_exp", {
             image: this.rawImg,
           })
           .then((response) => {
             this.deblurifiedImg = `data:image/jpeg;base64,${response.data.image}`;
-            localStorage.setItem("DEBLURIFIED_IMG", this.deblurifiedImg);
+            // localStorage.setItem("DEBLURIFIED_IMG", this.deblurifiedImg);
           });
       }
     },
-
-    download() {
-      
-    }
   },
 };
 </script>
@@ -143,6 +132,13 @@ html {
   margin-top: 60px;
   background: linear-gradient(to right, #29323c, #485563);
   height: 1000px;
+  margin: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 .pointer {
@@ -162,12 +158,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   width: 100%;
-}
-
-.upload-img {
-  max-width: 90%;
-  max-height: auto;
-  margin-bottom: 20px;
+  margin: auto;
 }
 
 .deblur-btn-col {
@@ -175,9 +166,16 @@ h1 {
 }
 
 .image-one {
+  width: 96%;
+  max-height: auto;
+  margin-bottom: 20px;
 }
 
 .image-two {
+  display: block;
+  width: 96%;
+  height: auto;
+  margin-bottom: 20px;
 }
 
 .image-col {
@@ -185,7 +183,7 @@ h1 {
 }
 
 .imgBorder {
-  padding: 15px 15px 0;
+  padding: 2% 2% 0;
   background-color: white;
   box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
   -moz-box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
@@ -279,10 +277,6 @@ select::after {
 
 .container {
   position: relative;
-}
-
-.image {
-  /* display: block; */
 }
 
 .overlay {
